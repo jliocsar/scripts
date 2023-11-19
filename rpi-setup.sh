@@ -1,6 +1,6 @@
 printf "Running setup script for Raspberry Pi Zero W"
 
-if [ ! $ZSHs ]; then
+if [ ! $ZSH ]; then
   printf "No ZSH installed!\n"
   printf "Installing ZSH\n"
   sudo apt install -y zsh
@@ -9,17 +9,16 @@ if [ ! $ZSHs ]; then
 fi
 
 printf "Installing apt deps\n"
-sudo apt install -y git \
-  curl \
-  w3m \
-  w3m-img
+sudo apt install -y git curl
 
-printf "Installing nvm\n"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-
-printf "Installing Bun\n"
-curl -fsSL https://bun.sh/install | bash
+printf "Installing Node v20.7.0\n"
+wget https://unofficial-builds.nodejs.org/download/release/v20.7.0/node-v20.7.0-linux-armv6l.tar.gz
+tar -xzf node-v20.7.0-linux-armv6l.tar.gz
+cd node-v20.7.0-linux-armv6l
+sudo cp -R * /usr/local
+cd ..
+rm -rf node-v20.7.0-linux-armv6l
 
 printf "Installing Luvit\n"
-curl -L https://github.com/luvit/lit/raw/master/get-lit.sh | sh
+curl -fL https://github.com/truemedian/luvit-bin/raw/main/install.sh | sh
 
